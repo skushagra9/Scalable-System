@@ -1,5 +1,9 @@
 # Scalable System with Task Handling and Queue Optimization
 
+
+https://github.com/skushagra9/Scalable-System/assets/120712705/369d7c04-a5a2-4fab-8c0b-13c94a2acacb
+
+
 This repository showcases a scalable system architecture designed to handle both synchronous and asynchronous tasks efficiently. The system is built to differentiate between critical tasks, such as email services, which are handled synchronously, and less critical tasks, like payment processing, which are handled asynchronously using BullMQ, a powerful queuing service.
 
 ## Key Features
