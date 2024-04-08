@@ -12,6 +12,8 @@ This repository showcases a scalable system architecture designed to handle both
 ## Technologies Used
 
 - Node.js
+- Typescript
+- Redis
 - BullMQ
 - Rate Limiting Strategies
 - Scalability Architecture
