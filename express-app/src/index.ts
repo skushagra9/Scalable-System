@@ -1,10 +1,12 @@
 import { makePayment } from './functions/payment';
 import { sendEmail } from './functions/email';
 import express from 'express'
+import { Queue } from 'bullmq';
+
+const myQueue = new Queue('email');
 const app = express();
 const port = 3000;
 
-// Combined endpoint for making payment and sending email
 app.post('/process-order', async (req, res) => {
   console.log('Processing payment...');
   try {
@@ -15,13 +17,15 @@ app.post('/process-order', async (req, res) => {
       cvv: '123'
     });
 
-    await sendEmail({
+    //Instead of sending the Email here - I am adding it to the queue - the scalable-app would handle it now
+    await myQueue.add(`${Date.now()}`, {
       recipient: 'example@example.com',
       subject: 'Hello',
       text: 'This is a test email.'
+
     });
 
-    console.log('Payment processed and email sent successfully!');
+    console.log('Payment processed and email added to queue successfully!');
     res.json({ message: 'Order processed successfully!' });
   } catch (error) {
     console.error('Error processing order:', error);
